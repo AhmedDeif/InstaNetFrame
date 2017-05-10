@@ -10,6 +10,12 @@
 		424CD2F61EC3BA6200E7FD89 /* InstaNetFrame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424CD2EC1EC3BA6200E7FD89 /* InstaNetFrame.framework */; };
 		424CD2FB1EC3BA6200E7FD89 /* InstaNetFrameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 424CD2FA1EC3BA6200E7FD89 /* InstaNetFrameTests.m */; };
 		424CD2FD1EC3BA6200E7FD89 /* InstaNetFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = 424CD2EF1EC3BA6200E7FD89 /* InstaNetFrame.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		424CD31A1EC3BF3600E7FD89 /* HTTPMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 424CD3181EC3BF3600E7FD89 /* HTTPMethod.h */; };
+		424CD31B1EC3BF3600E7FD89 /* HTTPMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 424CD3191EC3BF3600E7FD89 /* HTTPMethod.m */; };
+		424CD3231EC3BF6600E7FD89 /* RequestQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 424CD3211EC3BF6600E7FD89 /* RequestQueue.h */; };
+		424CD3241EC3BF6600E7FD89 /* RequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 424CD3221EC3BF6600E7FD89 /* RequestQueue.m */; };
+		424CD3281EC3C6B800E7FD89 /* Request.h in Headers */ = {isa = PBXBuildFile; fileRef = 424CD3261EC3C6B800E7FD89 /* Request.h */; };
+		424CD3291EC3C6B800E7FD89 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 424CD3271EC3C6B800E7FD89 /* Request.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +35,12 @@
 		424CD2F51EC3BA6200E7FD89 /* InstaNetFrameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstaNetFrameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		424CD2FA1EC3BA6200E7FD89 /* InstaNetFrameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstaNetFrameTests.m; sourceTree = "<group>"; };
 		424CD2FC1EC3BA6200E7FD89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		424CD3181EC3BF3600E7FD89 /* HTTPMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPMethod.h; sourceTree = "<group>"; };
+		424CD3191EC3BF3600E7FD89 /* HTTPMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPMethod.m; sourceTree = "<group>"; };
+		424CD3211EC3BF6600E7FD89 /* RequestQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestQueue.h; sourceTree = "<group>"; };
+		424CD3221EC3BF6600E7FD89 /* RequestQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestQueue.m; sourceTree = "<group>"; };
+		424CD3261EC3C6B800E7FD89 /* Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
+		424CD3271EC3C6B800E7FD89 /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +83,12 @@
 		424CD2EE1EC3BA6200E7FD89 /* InstaNetFrame */ = {
 			isa = PBXGroup;
 			children = (
+				424CD3181EC3BF3600E7FD89 /* HTTPMethod.h */,
+				424CD3191EC3BF3600E7FD89 /* HTTPMethod.m */,
+				424CD3261EC3C6B800E7FD89 /* Request.h */,
+				424CD3271EC3C6B800E7FD89 /* Request.m */,
+				424CD3211EC3BF6600E7FD89 /* RequestQueue.h */,
+				424CD3221EC3BF6600E7FD89 /* RequestQueue.m */,
 				424CD2EF1EC3BA6200E7FD89 /* InstaNetFrame.h */,
 				424CD2F01EC3BA6200E7FD89 /* Info.plist */,
 			);
@@ -93,7 +111,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				424CD3281EC3C6B800E7FD89 /* Request.h in Headers */,
 				424CD2FD1EC3BA6200E7FD89 /* InstaNetFrame.h in Headers */,
+				424CD3231EC3BF6600E7FD89 /* RequestQueue.h in Headers */,
+				424CD31A1EC3BF3600E7FD89 /* HTTPMethod.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +216,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				424CD31B1EC3BF3600E7FD89 /* HTTPMethod.m in Sources */,
+				424CD3241EC3BF6600E7FD89 /* RequestQueue.m in Sources */,
+				424CD3291EC3C6B800E7FD89 /* Request.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +412,7 @@
 				424CD3021EC3BA6200E7FD89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		424CD3031EC3BA6200E7FD89 /* Build configuration list for PBXNativeTarget "InstaNetFrameTests" */ = {
 			isa = XCConfigurationList;
@@ -396,6 +421,7 @@
 				424CD3051EC3BA6200E7FD89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
