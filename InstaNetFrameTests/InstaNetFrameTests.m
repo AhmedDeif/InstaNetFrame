@@ -54,19 +54,29 @@
 }
 
 - (void)testRequestEnqueue{
-    
+    RequestQueue * testQueue = [[RequestQueue alloc] init];
+    Request *testEnqueuedRequest = [[Request alloc]initWithURL:[NSURL URLWithString:@"emptyURL"] MethodType:GET];
+    testEnqueuedRequest.id = 5;
+    [testQueue enqueue:testEnqueuedRequest];
+    Request *testDequeueRequest = [testQueue dequeue];
+    XCTAssertEqual(testEnqueuedRequest.id, testDequeueRequest.id, @"Failed to set request id.");
 }
 
 - (void)testRequestDequeue{
+    RequestQueue * testQueue = [[RequestQueue alloc] init];
+    Request *testEnqueuedRequest = [[Request alloc]initWithURL:[NSURL URLWithString:@"emptyURL"] MethodType:GET];
+    testEnqueuedRequest.id = 5;
+    [testQueue enqueue:testEnqueuedRequest];
+    Request *testDequeueRequest = [testQueue dequeue];
     
+    XCTAssertTrue([testQueue isEmpty], @"Failed to dequeue correctly.");
 }
 
 - (void)testAPIRequestManagerSessionCreation{
+    APIRequestManager *manager = [APIRequestManager sharedAPIRequestManager];
     
-}
-
-- (void)testPostRequests {
- 
+    XCTAssertNotNil([manager CellularBackgroundSession], @"Failed to create WIFI BackgroundSession");
+        XCTAssertNotNil([manager WIFIBackgroundSession], @"Failed to create Cellular data BackgroundSession");
     
 }
 
