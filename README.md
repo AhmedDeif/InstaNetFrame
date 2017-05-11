@@ -16,7 +16,6 @@ print the JSON response from server:
 ```
 @import InstaNetFrame;
 
-
 APIRequestManager *manager = [APIRequestManager sharedAPIRequestManager];
 
 NSString *str = [NSString stringWithFormat:@"http://localhost:3000/posts/%d", 7];
@@ -47,7 +46,9 @@ The code block below shows how to use InstaNetUIImageView:
 
 - (void) methodName {
             APIRequestManager *manager = [APIRequestManager sharedAPIRequestManager];
-            Request* request = [[Request alloc] initWithURL:[NSURL URLWithString:@"https://images.unsplash.com/photo-1476445704028-a36e0c798192"] MethodType:GET];
+            Request* request = [[Request alloc] initWithURL:
+                        [NSURL URLWithString:@"https://images.unsplash.com/photo-1476445704028-a36e0c798192"]
+                        MethodType:GET];
             [_myImage initWithImageRequest:request withInstaNetUIImageView:_myImage ApiManager:manager];
 }
 
