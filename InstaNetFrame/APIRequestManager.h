@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "Request.h"
+
+#import "Reachability.h"
 #import "RequestQueue.h"
 
 @interface APIRequestManager : NSObject <NSURLSessionTaskDelegate,NSURLSessionDownloadDelegate, NSURLSessionDataDelegate>{

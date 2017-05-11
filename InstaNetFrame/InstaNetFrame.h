@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 //! Project version number for InstaNetFrame.
 FOUNDATION_EXPORT double InstaNetFrameVersionNumber;
 
@@ -17,9 +16,12 @@ FOUNDATION_EXPORT const unsigned char InstaNetFrameVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <InstaNetFrame/PublicHeader.h>
 
-#import "HTTPMethod.h"
+#import <InstaNetFrame/HTTPMethod.h>
+
 #import <InstaNetFrame/Request.h>
+
 #import <InstaNetFrame/RequestQueue.h>
+
 #import <InstaNetFrame/APIRequestManager.h>
 
 

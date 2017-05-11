@@ -45,6 +45,7 @@
 }
 
 - (void)enqueueRequest:(Request *)newRequest{
+    
     [self.myRequestQueue enqueue:newRequest];
     NSLog(@"Enqueued Request to queue");
 }
@@ -65,10 +66,31 @@
     NSMutableURLRequest *APIRequest = [[NSMutableURLRequest alloc] init];
     [APIRequest setURL:request.URL];
     [APIRequest setHTTPMethod:HTTPMethodString(request.Method)];
-//    NSURLSessionDownloadTask *downloadTask = [self.WIFIBackgroundSession downloadTaskWithURL:APIRequest.URL];
     
-    NSURLSessionDownloadTask *downloadTask = [self.WIFIBackgroundSession downloadTaskWithURL:APIRequest.URL];
-    [downloadTask resume];
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    [reachability startNotifier];
+    
+    NetworkStatus status = [reachability currentReachabilityStatus];
+    
+    if(status == NotReachable)
+    {
+        //No internet
+    }
+    else if (status == ReachableViaWiFi)
+    {
+        NSLog(@"On Wifi network");
+        NSURLSessionDownloadTask *downloadTask = [self.WIFIBackgroundSession downloadTaskWithURL:APIRequest.URL];
+        [downloadTask resume];
+    }
+    else if (status == ReachableViaWWAN)
+    {
+        NSLog(@"On 3G network");
+        NSURLSessionDownloadTask *downloadTask = [self.CellularBackgroundSession downloadTaskWithURL:APIRequest.URL];
+        [downloadTask resume];
+    }
+    
+    
+
      
 }
 
