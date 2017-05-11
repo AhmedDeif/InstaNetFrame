@@ -25,9 +25,7 @@
 - (instancetype)init
 {
     self = [super init];
-    
     if (self) {
-        
         self.myRequestQueue = [[RequestQueue alloc] init];
         self.RequestsInProgressQueue = [[RequestQueue alloc] init];
         NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"Ahmed.Abodeif.WIFI.BackgroundSession"];
@@ -46,7 +44,6 @@
 }
 
 - (void)enqueueRequest:(Request *)newRequest{
-    
     [self.myRequestQueue enqueue:newRequest];
 }
 

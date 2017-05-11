@@ -24,4 +24,6 @@ FOUNDATION_EXPORT const unsigned char InstaNetFrameVersionString[];
 
 #import <InstaNetFrame/APIRequestManager.h>
 
+#import "InstaNetUIImageView.h"
+
 
