@@ -37,7 +37,7 @@ The code block below shows how to use InstaNetUIImageView:
 @interface myViewController ()
 
 //  outlet to InstaNetUIImageView in storyboard. 
-//  **Note:** The class of ImageView must be set to InstaNetUIImageView.
+//  Note: The class of ImageView must be set to InstaNetUIImageView.
 @property (weak, nonatomic) IBOutlet InstaNetUIImageView *myImage;
 
 @end
