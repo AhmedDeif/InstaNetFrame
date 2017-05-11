@@ -11,6 +11,8 @@ InstaNetFrame is a networking IOS framework for executing HTTP requests in apps.
 - Extends UIImageView as InstaNetUIImageView. InstaNetUIImageView loads an image using a URL displaying an activity indicator until the image is loaded.
 
 
+Note: Make sure that your app build settings frame search path field contains the path to the framework.
+
 The code block below shows how to send a GET request to URL "http://localhost:3000/posts/7" and 
 print the JSON response from server:
 ```
