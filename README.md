@@ -49,6 +49,7 @@ The code block below shows how to use InstaNetUIImageView:
             Request* request = [[Request alloc] initWithURL:
                         [NSURL URLWithString:@"https://images.unsplash.com/photo-1476445704028-a36e0c798192"]
                         MethodType:GET];
+            [_myImage setContentMode:UIViewContentModeScaleAspectFit];
             [_myImage initWithImageRequest:request withInstaNetUIImageView:_myImage ApiManager:manager];
 }
 
