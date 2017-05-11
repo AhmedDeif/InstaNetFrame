@@ -11,20 +11,55 @@
 
 @interface Request : NSObject
 
+/**
+ *  Enum value specifiying the request's HTTP method.
+ */
 @property (nonatomic) HTTPMethod Method;
-@property (nonatomic) NSURL *URL;
-@property (nonatomic) NSDictionary *parameters;
-@property (nonatomic) NSString *postData;
+
+/**
+ *  Mutuable URL holding address.
+ */
+@property (nonatomic) NSURL* _Nonnull URL;
+
+/**
+ *  Dictionary of request parameters. Nullable as some requests do not require params.
+ */
+@property (nonatomic) NSDictionary* _Nullable parameters;
+
+/**
+ *  data to be posted to server. Only set when using HTTP POST method.
+ */
+@property (nonatomic) NSString* _Nullable postData;
+
+/**
+ *  Request ID is equivilant to download task identifier.
+ */
 @property (nonatomic) NSUInteger id;
-@property (nonatomic, copy) void (^completionHandler)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error);
 
--(Request*) initWithURL:(NSURL*)withURL MethodType:(HTTPMethod)method PostRequestData:(NSString*)postData onComplete:(void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completionBlock;
--(Request*) initWithURL:(NSURL*)withURL MethodType:(HTTPMethod)method RequestParameters:(NSDictionary*)parameters onComplete:(void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completionBlock;
--(Request*) initWithURL:(NSURL*)withURL;
--(Request*) initWithURL:(NSURL*)withURL MethodType:(HTTPMethod)method;
--(Request*) initWithURL:(NSURL*)withURL MethodType:(HTTPMethod)method RequestParameters:(NSDictionary*)parameters;
+/**
+ *  Pointer to point at Request completition handler. Completition handler is
+ *  executed after the download task finishes execution.
+ */
+@property (nonatomic, copy) void (^ _Nullable completionHandler)(NSData* _Nullable data, NSURLResponse* _Nullable response, NSError* _Nullable error);
 
+/**
+ *  Request constructor for requests with POST HTTP method. Completition handler is code
+ *  block executed when the downloadTask finishes. It acts as a callback function to the
+ *  the request enquequer. POST request data must be set.
+ */
+- (Request* _Nonnull) initWithURL:(NSURL* _Nonnull)withURL MethodType:(HTTPMethod)method PostRequestData:(NSString* _Nonnull)postData onComplete:(void (^ _Nullable)(NSData* _Nullable data, NSURLResponse* _Nullable response, NSError* _Nullable error))completionBlock;
 
+/**
+ *  Request constructor for requests with GET HTTP method. Completition handler is code
+ *  block executed when the downloadTask finishes. It acts as a callback function to the
+ *  the request enquequer.
+ */
+- (Request* _Nonnull) initWithURL:(NSURL* _Nonnull)withURL MethodType:(HTTPMethod)method RequestParameters:(NSDictionary* _Nullable)parameters onComplete:(void (^ _Nullable)(NSData* _Nullable data, NSURLResponse* _Nullable response, NSError* _Nullable error))completionBlock;
 
+- (Request* _Nonnull) initWithURL:(NSURL* _Nonnull)withURL;
+
+- (Request* _Nonnull) initWithURL:(NSURL* _Nonnull)withURL MethodType:(HTTPMethod)method;
+
+- (Request* _Nonnull) initWithURL:(NSURL* _Nonnull)withURL MethodType:(HTTPMethod)method RequestParameters:(NSDictionary* _Nullable)parameters;
 
 @end

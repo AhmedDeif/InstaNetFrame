@@ -10,8 +10,6 @@
 #import "HTTPMethod.h"
 
 NSString *HTTPMethodString(HTTPMethod method) {
-    NSLog(@"dowa el method");
-    
     switch (method) {
         case GET:      return @"GET";
         case POST:     return @"POST";

@@ -16,7 +16,7 @@
 
 @implementation RequestQueue
 
--(instancetype)init{
+- (instancetype) init{
     
     if (self = [super init]){
         _data = [[NSMutableArray alloc] init];
@@ -25,16 +25,16 @@
         NSLog(@"Failed to instantiate RequestQueue");
     }
     return self;
-    
 }
 
--(void)enqueue:(id)anObject{
+
+- (void) enqueue :(id)anObject{
     
     [self.data addObject:anObject];
-    
 }
 
--(id)dequeue{
+
+- (id) dequeue{
     
     id headObject = [self.data objectAtIndex:0];
     if (headObject != nil) {
@@ -45,8 +45,8 @@
     return headObject;
 }
 
--(int)getRequestIndex:(NSUInteger)RequestID{
-    
+
+- (int) getRequestIndex :(NSUInteger)RequestID{
     for(int i=0; i<[self.data count]; i++){
         Request* myRequest = (Request*)[self.data objectAtIndex:i];
         if(myRequest.id == RequestID){
@@ -56,20 +56,24 @@
     return -1;
 }
 
--(Request*)requestAtIndex:(int)index{
+
+- (Request*) requestAtIndex :(int)index{
     return (Request*)[self.data objectAtIndex:index];
 }
 
--(void)removeRequestAtIndex:(int)index{
+
+- (void) removeRequestAtIndex :(int)index{
     [self.data removeObjectAtIndex:index];
 }
 
--(BOOL) isEmpty{
+
+- (BOOL) isEmpty{
     if([self.data count] > 0)
     {
         return NO;
     }
     return YES;
 }
+
 
 @end

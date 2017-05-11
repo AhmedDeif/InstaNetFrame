@@ -12,10 +12,17 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ *  defines HTTP 1.1 methods.
+ *  Note: Only GET and POST are implemented by the framework.
+ */
 typedef NS_ENUM(NSUInteger, HTTPMethod){
     GET, POST, PUT, DELETE, HEAD
 };
 
+/**
+ *  returns a string corresponding to the HTTPMethod passed.
+ */
 extern NSString *HTTPMethodString(HTTPMethod method);
 
-#endif /* HTTPMethod_h */
+#endif

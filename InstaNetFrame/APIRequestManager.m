@@ -11,7 +11,6 @@
 @implementation APIRequestManager
 
 
-
 +(id) sharedAPIRequestManager {
     static APIRequestManager *sharedAPIRequestManager = nil;
     static dispatch_once_t onceToken;
@@ -29,17 +28,18 @@
         self.myRequestQueue = [[RequestQueue alloc] init];
         self.RequestsInProgressQueue = [[RequestQueue alloc] init];
         NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"Ahmed.Abodeif.WIFI.BackgroundSession"];
+        //  set Maximum concurrent download tasks. It is 6 while on WIFI.
         sessionConfiguration.HTTPMaximumConnectionsPerHost = 6;
+        //  Session allows cellular access to continue downloads that began execution while on wifi.
         sessionConfiguration.allowsCellularAccess = YES;
         self.WIFIBackgroundSession = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:nil];
         
+        //  set Maximum concurrent download tasks. It is 2 while on cellular data.
         NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"Ahmed.Abodeif.Cellular.BackgroundSession"];
         sessionConfig.HTTPMaximumConnectionsPerHost = 2;
         sessionConfig.allowsCellularAccess = YES;
         self.CellularBackgroundSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:nil];
-        
     }
-    
     return self;
 }
 
@@ -53,10 +53,6 @@
         Request *newRequest = [self.myRequestQueue dequeue];
         [self.RequestsInProgressQueue enqueue:newRequest];
         [self execute:newRequest];
-        NSLog(@"Denqueued Request from queue");
-    } 
-    else {
-        NSLog(@"No tasks to dequeue");
     }
 }
 
@@ -79,59 +75,48 @@
     
     if(status == NotReachable)
     {
-        //No internet
+        //  No internet
         NSLog(@"You are not connected to the internet, cannot start request execution...");
     }
     else if (status == ReachableViaWiFi)
     {
-        //Using Wifi
+        //  Using Wifi
+        //  Data session is created using WIFIBackgroundSession, this ensures that a maximum of
+        //  6 concurrent tasks are run at the same time.
         NSURLSessionDownloadTask *downloadTask = [self.WIFIBackgroundSession downloadTaskWithURL:APIRequest.URL];
         request.id = downloadTask.taskIdentifier;
         [downloadTask resume];
     }
     else if (status == ReachableViaWWAN)
     {
-        //Using Cellular data
+        //  Using Cellular data
+        //  Data session is created using WIFIBackgroundSession, this ensures that a maximum of
+        //  2 concurrent tasks are run at the same time.
         NSURLSessionDownloadTask *downloadTask = [self.CellularBackgroundSession downloadTaskWithURL:APIRequest.URL];
         [downloadTask resume];
     }
 }
 
-
+//  Method called when download is complete.
 - (void) URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location{
     
     NSData* data = [NSData dataWithContentsOfURL:location];
     int requestIndex = [self.RequestsInProgressQueue getRequestIndex:[downloadTask taskIdentifier]];
+    
+    //  request completition task is called when download is complete.
     [self.RequestsInProgressQueue requestAtIndex:requestIndex].completionHandler(data, nil, nil);
     [self.RequestsInProgressQueue removeRequestAtIndex:requestIndex];
-    
-    
-//    dispatch_async(dispatch_get_main_queue(),^{
-//        NSLog(@"download task finished...");
-//    });
     
 }
 
 
 - (void) URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes{
-    
-    //  used for resuming, the data will be saved to disk and then written to disk.
-    
+    //  Empty Method.
 }
 
 
 - (void) URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *) downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite{
-    
-//    float progress = (double)totalBytesWritten / (double)totalBytesExpectedToWrite;
-    NSLog(@"downloaded %lld", bytesWritten);
-    
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//
-//    });
-    
+    //  Empty Method.
 }
-
-
-
 
 @end
