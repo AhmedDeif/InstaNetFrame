@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Request.h"
 
 @interface RequestQueue : NSObject
 
 -(void)enqueue:(id)anObject;
 -(id)dequeue;
+-(int)getRequestIndex:(NSUInteger)Request;
+-(Request*)requestAtIndex:(int)index;
 -(BOOL)isEmpty;
+
 
 @end

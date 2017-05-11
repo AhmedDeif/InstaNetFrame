@@ -7,9 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import "Request.h"
-
 #import "Reachability.h"
 #import "RequestQueue.h"
 
@@ -17,6 +15,7 @@
 }
 
 @property (nonatomic) RequestQueue *myRequestQueue;
+@property (nonatomic) RequestQueue *RequestsInProgressQueue;
 @property (nonatomic) NSURLSession *WIFIBackgroundSession;
 @property (nonatomic) NSURLSession *CellularBackgroundSession;
 
@@ -26,3 +25,4 @@
 -(void)dequeueRequest;
 
 @end
+

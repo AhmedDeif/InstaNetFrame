@@ -9,8 +9,6 @@
 
 #import "HTTPMethod.h"
 
-
-
 NSString *HTTPMethodString(HTTPMethod method) {
     NSLog(@"dowa el method");
     

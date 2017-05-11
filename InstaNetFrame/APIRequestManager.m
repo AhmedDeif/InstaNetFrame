@@ -29,6 +29,7 @@
     if (self) {
         
         self.myRequestQueue = [[RequestQueue alloc] init];
+        self.RequestsInProgressQueue = [[RequestQueue alloc] init];
         NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"Ahmed.Abodeif.WIFI.BackgroundSession"];
         sessionConfiguration.HTTPMaximumConnectionsPerHost = 6;
         sessionConfiguration.allowsCellularAccess = YES;
@@ -51,8 +52,10 @@
 }
 
 - (void)dequeueRequest{
+    
     if(![self.myRequestQueue isEmpty]){
         Request *newRequest = [self.myRequestQueue dequeue];
+        [self.RequestsInProgressQueue enqueue:newRequest];
         [self execute:newRequest];
         NSLog(@"Denqueued Request from queue");
     }
@@ -66,20 +69,22 @@
     NSMutableURLRequest *APIRequest = [[NSMutableURLRequest alloc] init];
     [APIRequest setURL:request.URL];
     [APIRequest setHTTPMethod:HTTPMethodString(request.Method)];
-    
+
     Reachability *reachability = [Reachability reachabilityForInternetConnection];
     [reachability startNotifier];
-    
     NetworkStatus status = [reachability currentReachabilityStatus];
     
     if(status == NotReachable)
     {
         //No internet
+        NSLog(@"You are not connected to the internet, cannot start request execution...");
     }
     else if (status == ReachableViaWiFi)
     {
         NSLog(@"On Wifi network");
         NSURLSessionDownloadTask *downloadTask = [self.WIFIBackgroundSession downloadTaskWithURL:APIRequest.URL];
+        
+        request.id = downloadTask.taskIdentifier;
         [downloadTask resume];
     }
     else if (status == ReachableViaWWAN)
@@ -88,27 +93,27 @@
         NSURLSessionDownloadTask *downloadTask = [self.CellularBackgroundSession downloadTaskWithURL:APIRequest.URL];
         [downloadTask resume];
     }
-    
-    
-
-     
 }
 
 
 - (void) URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location{
-    NSData* data = [NSData dataWithContentsOfURL:location];
-    NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     
-    NSLog(@"%@",jsonResponse);
-    NSLog(@"download task finished...");
+    NSData* data = [NSData dataWithContentsOfURL:location];
+    int x = [self.RequestsInProgressQueue getRequestIndex:[downloadTask taskIdentifier]];
+    [self.RequestsInProgressQueue requestAtIndex:x].completionHandler(data, nil, nil);
+    
+    
 //    dispatch_async(dispatch_get_main_queue(),^{
 //        NSLog(@"download task finished...");
 //    });
+    
 }
 
 
 - (void) URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes{
+    
     //  used for resuming, the data will be saved to disk and then written to disk.
+    
 }
 
 
@@ -120,6 +125,7 @@
 //    dispatch_async(dispatch_get_main_queue(), ^{
 //
 //    });
+    
 }
 
 

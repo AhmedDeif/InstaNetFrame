@@ -54,6 +54,23 @@
     return self;
 }
 
+-(Request*) initWithURL:(NSURL*)withURL MethodType:(HTTPMethod)method RequestParameters:(NSDictionary*)params onComplete:(void (^)(void))completionBlock {
+    self = [super init];
+    
+    if(self) {
+        self.URL = withURL;
+        self.Method = method;
+        self.parameters = params;
+        self.completionHandler = [completionBlock copy];
+    }
+    else {
+        NSLog(@"Error, Request Object not initialised !!!");
+    }
+    return self;
+    
+    
+}
+
 
 
 

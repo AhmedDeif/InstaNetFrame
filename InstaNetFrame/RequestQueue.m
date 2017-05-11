@@ -8,8 +8,6 @@
 
 #import "RequestQueue.h"
 
-
-
 @interface RequestQueue()
 
 @property (strong) NSMutableArray *data;
@@ -45,6 +43,21 @@
         
     }
     return headObject;
+}
+
+-(int)getRequestIndex:(NSUInteger)RequestID{
+    
+    for(int i=0; i<[self.data count]; i++){
+        Request* myRequest = (Request*)[self.data objectAtIndex:i];
+        if(myRequest.id == RequestID){
+            return i;
+        }
+    }
+    return -1;
+}
+
+-(Request*)requestAtIndex:(int)index{
+    return (Request*)[self.data objectAtIndex:index];
 }
 
 -(BOOL) isEmpty{
