@@ -31,4 +31,28 @@ Request *myRequest =  [[Request alloc] initWithURL:[NSURL URLWithString: str] Me
 ```
 
 
+The code block below shows how to use InstaNetUIImageView:
+```
+@import InstaNetFrame;
+
+@interface myViewController ()
+
+//  outlet to InstaNetUIImageView in storyboard. 
+//  **Note:** The class of ImageView must be set to InstaNetUIImageView.
+@property (weak, nonatomic) IBOutlet InstaNetUIImageView *myImage;
+
+@end
+
+@implementation myViewController
+
+- (void) methodName {
+            APIRequestManager *manager = [APIRequestManager sharedAPIRequestManager];
+            Request* request = [[Request alloc] initWithURL:[NSURL URLWithString:@"https://images.unsplash.com/photo-1476445704028-a36e0c798192"] MethodType:GET];
+            [_myImage initWithImageRequest:request withInstaNetUIImageView:_myImage ApiManager:manager];
+}
+
+@end
+```
+
+
 
