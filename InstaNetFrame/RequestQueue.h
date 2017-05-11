@@ -16,6 +16,7 @@
 -(int)getRequestIndex:(NSUInteger)Request;
 -(Request*)requestAtIndex:(int)index;
 -(BOOL)isEmpty;
+-(void)removeRequestAtIndex:(int)index;
 
 
 @end

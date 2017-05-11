@@ -13,11 +13,11 @@ NSString *HTTPMethodString(HTTPMethod method) {
     NSLog(@"dowa el method");
     
     switch (method) {
-        case GET:       NSLog(@"GET Request"); return @"GET";
-        case POST:      NSLog(@"POST Request"); return @"POST";
-        case PUT:       NSLog(@"PUT Request"); return @"PUT";
-        case DELETE:    NSLog(@"DELETE Request"); return @"DELETE";
-        case HEAD:      NSLog(@"HEAD Request"); return @"HEAD";
-        default:        NSLog(@"ERROR !!!"); return nil;
+        case GET:      return @"GET";
+        case POST:     return @"POST";
+        case PUT:      return @"PUT";
+        case DELETE:   return @"DELETE";
+        case HEAD:     return @"HEAD";
+        default:       return nil;
     }
 }

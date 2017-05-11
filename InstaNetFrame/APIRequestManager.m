@@ -48,7 +48,6 @@
 - (void)enqueueRequest:(Request *)newRequest{
     
     [self.myRequestQueue enqueue:newRequest];
-    NSLog(@"Enqueued Request to queue");
 }
 
 - (void)dequeueRequest{
@@ -58,7 +57,7 @@
         [self.RequestsInProgressQueue enqueue:newRequest];
         [self execute:newRequest];
         NSLog(@"Denqueued Request from queue");
-    }
+    } 
     else {
         NSLog(@"No tasks to dequeue");
     }
@@ -69,7 +68,14 @@
     NSMutableURLRequest *APIRequest = [[NSMutableURLRequest alloc] init];
     [APIRequest setURL:request.URL];
     [APIRequest setHTTPMethod:HTTPMethodString(request.Method)];
-
+    
+    if(request.Method == POST){
+        NSData *postData = [request.postData dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+        NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+        [APIRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
+        [APIRequest setHTTPBody:postData];
+    }
+    
     Reachability *reachability = [Reachability reachabilityForInternetConnection];
     [reachability startNotifier];
     NetworkStatus status = [reachability currentReachabilityStatus];
@@ -81,15 +87,14 @@
     }
     else if (status == ReachableViaWiFi)
     {
-        NSLog(@"On Wifi network");
+        //Using Wifi
         NSURLSessionDownloadTask *downloadTask = [self.WIFIBackgroundSession downloadTaskWithURL:APIRequest.URL];
-        
         request.id = downloadTask.taskIdentifier;
         [downloadTask resume];
     }
     else if (status == ReachableViaWWAN)
     {
-        NSLog(@"On 3G network");
+        //Using Cellular data
         NSURLSessionDownloadTask *downloadTask = [self.CellularBackgroundSession downloadTaskWithURL:APIRequest.URL];
         [downloadTask resume];
     }
@@ -99,8 +104,9 @@
 - (void) URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location{
     
     NSData* data = [NSData dataWithContentsOfURL:location];
-    int x = [self.RequestsInProgressQueue getRequestIndex:[downloadTask taskIdentifier]];
-    [self.RequestsInProgressQueue requestAtIndex:x].completionHandler(data, nil, nil);
+    int requestIndex = [self.RequestsInProgressQueue getRequestIndex:[downloadTask taskIdentifier]];
+    [self.RequestsInProgressQueue requestAtIndex:requestIndex].completionHandler(data, nil, nil);
+    [self.RequestsInProgressQueue removeRequestAtIndex:requestIndex];
     
     
 //    dispatch_async(dispatch_get_main_queue(),^{

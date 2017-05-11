@@ -54,21 +54,35 @@
     return self;
 }
 
--(Request*) initWithURL:(NSURL*)withURL MethodType:(HTTPMethod)method RequestParameters:(NSDictionary*)params onComplete:(void (^)(void))completionBlock {
+-(Request*) initWithURL:(NSURL*)withURL MethodType:(HTTPMethod)method RequestParameters:(NSDictionary*)params onComplete:(void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completionBlock{
     self = [super init];
     
     if(self) {
         self.URL = withURL;
-        self.Method = method;
+        self.Method = GET;
         self.parameters = params;
+        self.postData = nil;
         self.completionHandler = [completionBlock copy];
     }
     else {
         NSLog(@"Error, Request Object not initialised !!!");
     }
     return self;
-    
-    
+}
+
+-(Request*) initWithURL:(NSURL*)withURL MethodType:(HTTPMethod)method PostRequestData:(NSString*)postData onComplete:(void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completionBlock{
+    if(self) {
+        self.URL = withURL;
+        self.Method = POST;
+        self.parameters = nil;
+        self.postData = postData;
+        self.completionHandler = [completionBlock copy];
+    }
+    else {
+        NSLog(@"Error, Request Object not initialised !!!");
+    }
+    return self;
+
 }
 
 

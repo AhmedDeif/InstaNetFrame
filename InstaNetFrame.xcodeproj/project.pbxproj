@@ -17,10 +17,6 @@
 		424CD3291EC3C6B800E7FD89 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 424CD3271EC3C6B800E7FD89 /* Request.m */; };
 		424CD32C1EC3DBFF00E7FD89 /* APIRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 424CD32A1EC3DBFF00E7FD89 /* APIRequestManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		424CD32D1EC3DBFF00E7FD89 /* APIRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 424CD32B1EC3DBFF00E7FD89 /* APIRequestManager.m */; };
-		425DDBF21EC3F643006BEA9F /* APLAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 425DDBEC1EC3F643006BEA9F /* APLAppDelegate.h */; };
-		425DDBF31EC3F643006BEA9F /* APLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 425DDBED1EC3F643006BEA9F /* APLAppDelegate.m */; };
-		425DDBF41EC3F643006BEA9F /* APLViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 425DDBEE1EC3F643006BEA9F /* APLViewController.h */; };
-		425DDBF51EC3F643006BEA9F /* APLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 425DDBEF1EC3F643006BEA9F /* APLViewController.m */; };
 		425DDBF61EC3F643006BEA9F /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 425DDBF01EC3F643006BEA9F /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		425DDBF71EC3F643006BEA9F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 425DDBF11EC3F643006BEA9F /* Reachability.m */; };
 /* End PBXBuildFile section */
@@ -50,10 +46,6 @@
 		424CD3271EC3C6B800E7FD89 /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		424CD32A1EC3DBFF00E7FD89 /* APIRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIRequestManager.h; sourceTree = "<group>"; };
 		424CD32B1EC3DBFF00E7FD89 /* APIRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIRequestManager.m; sourceTree = "<group>"; };
-		425DDBEC1EC3F643006BEA9F /* APLAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APLAppDelegate.h; sourceTree = "<group>"; };
-		425DDBED1EC3F643006BEA9F /* APLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APLAppDelegate.m; sourceTree = "<group>"; };
-		425DDBEE1EC3F643006BEA9F /* APLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APLViewController.h; sourceTree = "<group>"; };
-		425DDBEF1EC3F643006BEA9F /* APLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APLViewController.m; sourceTree = "<group>"; };
 		425DDBF01EC3F643006BEA9F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		425DDBF11EC3F643006BEA9F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,10 +89,6 @@
 		424CD2EE1EC3BA6200E7FD89 /* InstaNetFrame */ = {
 			isa = PBXGroup;
 			children = (
-				425DDBEC1EC3F643006BEA9F /* APLAppDelegate.h */,
-				425DDBED1EC3F643006BEA9F /* APLAppDelegate.m */,
-				425DDBEE1EC3F643006BEA9F /* APLViewController.h */,
-				425DDBEF1EC3F643006BEA9F /* APLViewController.m */,
 				425DDBF01EC3F643006BEA9F /* Reachability.h */,
 				425DDBF11EC3F643006BEA9F /* Reachability.m */,
 				424CD2EF1EC3BA6200E7FD89 /* InstaNetFrame.h */,
@@ -135,9 +123,7 @@
 			files = (
 				424CD32C1EC3DBFF00E7FD89 /* APIRequestManager.h in Headers */,
 				424CD3281EC3C6B800E7FD89 /* Request.h in Headers */,
-				425DDBF41EC3F643006BEA9F /* APLViewController.h in Headers */,
 				424CD2FD1EC3BA6200E7FD89 /* InstaNetFrame.h in Headers */,
-				425DDBF21EC3F643006BEA9F /* APLAppDelegate.h in Headers */,
 				425DDBF61EC3F643006BEA9F /* Reachability.h in Headers */,
 				424CD3231EC3BF6600E7FD89 /* RequestQueue.h in Headers */,
 				424CD31A1EC3BF3600E7FD89 /* HTTPMethod.h in Headers */,
@@ -242,12 +228,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				425DDBF31EC3F643006BEA9F /* APLAppDelegate.m in Sources */,
 				424CD32D1EC3DBFF00E7FD89 /* APIRequestManager.m in Sources */,
 				424CD31B1EC3BF3600E7FD89 /* HTTPMethod.m in Sources */,
 				425DDBF71EC3F643006BEA9F /* Reachability.m in Sources */,
 				424CD3241EC3BF6600E7FD89 /* RequestQueue.m in Sources */,
-				425DDBF51EC3F643006BEA9F /* APLViewController.m in Sources */,
 				424CD3291EC3C6B800E7FD89 /* Request.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

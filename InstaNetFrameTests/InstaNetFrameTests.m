@@ -7,6 +7,10 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <InstaNetFrame/HTTPMethod.h>
+#import <InstaNetFrame/Request.h>
+#import <InstaNetFrame/RequestQueue.h>
+#import <InstaNetFrame/APIRequestManager.h>
 
 @interface InstaNetFrameTests : XCTestCase
 
@@ -16,24 +20,54 @@
 
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testRequestWithoutCompletionHandler{
+    NSString *str = [NSString stringWithFormat:@"http://localhost:3000/posts/5"];
+    NSURL *requestURL = [NSURL URLWithString: str];
+    HTTPMethod method = GET;
+    Request *testRequest = [[Request alloc] initWithURL:requestURL MethodType:method RequestParameters:nil];
+    
+    XCTAssertEqual(testRequest.URL, requestURL, @"Failed to initialise Request with provided URL.");
+    XCTAssertEqual(testRequest.Method, method, @"Failed to initialise Request with provided HTTP method.");
+    XCTAssertNil(testRequest.completionHandler, @"Failed, completition handler not nil but no completition handler was attached.");
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
+- (void)testRequestWithCompletionHandler{
+    NSString *str = [NSString stringWithFormat:@"http://localhost:3000/posts/5"];
+    NSURL *requestURL = [NSURL URLWithString: str];
+    HTTPMethod method = GET;
+    Request *testRequest = [[Request alloc] initWithURL:requestURL MethodType:method RequestParameters:nil onComplete:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        NSLog(@"%@",jsonResponse);
+        NSLog(@"PArty Abdelsalam !!!!!!");
     }];
+    
+    XCTAssertEqual(testRequest.URL, requestURL, @"Failed to initialise Request with provided URL.");
+    XCTAssertEqual(testRequest.Method, method, @"Failed to initialise Request with provided HTTP method.");
+    XCTAssertNotNil(testRequest.completionHandler, @"Failed to attach completition handler to request");
+}
+
+- (void)testRequestEnqueue{
+    
+}
+
+- (void)testRequestDequeue{
+    
+}
+
+- (void)testAPIRequestManagerSessionCreation{
+    
+}
+
+- (void)testPostRequests {
+ 
+    
 }
 
 @end

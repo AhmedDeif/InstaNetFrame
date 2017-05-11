@@ -60,6 +60,10 @@
     return (Request*)[self.data objectAtIndex:index];
 }
 
+-(void)removeRequestAtIndex:(int)index{
+    [self.data removeObjectAtIndex:index];
+}
+
 -(BOOL) isEmpty{
     if([self.data count] > 0)
     {
