@@ -16,6 +16,8 @@
 		424CD3241EC3BF6600E7FD89 /* RequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 424CD3221EC3BF6600E7FD89 /* RequestQueue.m */; };
 		424CD3281EC3C6B800E7FD89 /* Request.h in Headers */ = {isa = PBXBuildFile; fileRef = 424CD3261EC3C6B800E7FD89 /* Request.h */; };
 		424CD3291EC3C6B800E7FD89 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 424CD3271EC3C6B800E7FD89 /* Request.m */; };
+		424CD32C1EC3DBFF00E7FD89 /* APIRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 424CD32A1EC3DBFF00E7FD89 /* APIRequestManager.h */; };
+		424CD32D1EC3DBFF00E7FD89 /* APIRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 424CD32B1EC3DBFF00E7FD89 /* APIRequestManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,8 @@
 		424CD3221EC3BF6600E7FD89 /* RequestQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestQueue.m; sourceTree = "<group>"; };
 		424CD3261EC3C6B800E7FD89 /* Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
 		424CD3271EC3C6B800E7FD89 /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
+		424CD32A1EC3DBFF00E7FD89 /* APIRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIRequestManager.h; sourceTree = "<group>"; };
+		424CD32B1EC3DBFF00E7FD89 /* APIRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIRequestManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,13 +87,15 @@
 		424CD2EE1EC3BA6200E7FD89 /* InstaNetFrame */ = {
 			isa = PBXGroup;
 			children = (
+				424CD2EF1EC3BA6200E7FD89 /* InstaNetFrame.h */,
 				424CD3181EC3BF3600E7FD89 /* HTTPMethod.h */,
 				424CD3191EC3BF3600E7FD89 /* HTTPMethod.m */,
 				424CD3261EC3C6B800E7FD89 /* Request.h */,
 				424CD3271EC3C6B800E7FD89 /* Request.m */,
 				424CD3211EC3BF6600E7FD89 /* RequestQueue.h */,
 				424CD3221EC3BF6600E7FD89 /* RequestQueue.m */,
-				424CD2EF1EC3BA6200E7FD89 /* InstaNetFrame.h */,
+				424CD32A1EC3DBFF00E7FD89 /* APIRequestManager.h */,
+				424CD32B1EC3DBFF00E7FD89 /* APIRequestManager.m */,
 				424CD2F01EC3BA6200E7FD89 /* Info.plist */,
 			);
 			path = InstaNetFrame;
@@ -111,6 +117,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				424CD32C1EC3DBFF00E7FD89 /* APIRequestManager.h in Headers */,
 				424CD3281EC3C6B800E7FD89 /* Request.h in Headers */,
 				424CD2FD1EC3BA6200E7FD89 /* InstaNetFrame.h in Headers */,
 				424CD3231EC3BF6600E7FD89 /* RequestQueue.h in Headers */,
@@ -216,6 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				424CD32D1EC3DBFF00E7FD89 /* APIRequestManager.m in Sources */,
 				424CD31B1EC3BF3600E7FD89 /* HTTPMethod.m in Sources */,
 				424CD3241EC3BF6600E7FD89 /* RequestQueue.m in Sources */,
 				424CD3291EC3C6B800E7FD89 /* Request.m in Sources */,
